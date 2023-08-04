@@ -53,6 +53,26 @@ class testController extends Controller
     public function store(Request $request)
     {
         //
+
+        try{
+
+            $student=new Student();
+            $student->name=$request->name;
+            $student->size=$request->size;
+            $student->price=$request->price;
+            $student->save();
+
+            return response([
+               'message'=>'Student Create',
+               'student'=>$student
+            ]);
+
+        }catch(Exception $ex){
+           
+           return redirect([
+            'message'=>$ex->getMessage()
+           ]);
+        }
         return 'hello';
     }
 
