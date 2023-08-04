@@ -19,13 +19,13 @@ class testController extends Controller
         try{
            $students=Student::all();
 
-           return \response ([
+           return response ([
                       'students'=>$students,
                        'message'=>'Success'
 
            ]);
         }catch(Exception $ex){
-                return \response ([
+                return response ([
                 
                    'message'=>$ex->getMessage()
 
@@ -53,6 +53,7 @@ class testController extends Controller
     public function store(Request $request)
     {
         //
+        return 'hello';
     }
 
     /**

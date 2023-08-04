@@ -13,9 +13,7 @@ use App\Http\Controllers\admin\testController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/welcome', function () {
-    return 'welcome';
-});
+
 Route::resource('test', testController::class);
     
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
