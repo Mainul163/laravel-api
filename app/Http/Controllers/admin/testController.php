@@ -73,7 +73,7 @@ class testController extends Controller
             'message'=>$ex->getMessage()
            ]);
         }
-        return 'hello';
+        
     }
 
     /**
@@ -108,6 +108,27 @@ class testController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try{
+
+            $student=Student::find($id);
+            $student->name=$request->name;
+            $student->size=$request->size;
+            $student->price=$request->price;
+            $student->save();
+
+            return response([
+             
+                "message"=>"student Update",
+                "student"=>$student
+
+            ]);
+
+        }catch(Throwable $th){
+
+            return response([
+                'message'=>$th->getMessage()
+               ]);
+        }
     }
 
     /**
