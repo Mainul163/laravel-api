@@ -199,4 +199,35 @@ class testController extends Controller
            }
 
     }
+
+
+    
+public function uploadImage(Request $request){
+   try{
+
+    if($request->hasFile('image')){
+       $file=$request->file('image');
+       $filename=$file->getClientOriginalName();
+       $picture=\date('His').'-'.$filename;
+
+        $file->move(\public_path('upload'),$picture);
+        return response([
+            'message'=>"image upload",
+            'file'=>$picture
+        ]);
+        
+    }else{
+
+        return response([
+            'message'=>"select image first"
+        ]);
+    }
+
+   }catch(Throwable $th){
+    return response([
+        'message'=>$th->getMessage()
+       ]);
+    
+   }
+}
 }

@@ -15,7 +15,7 @@ use App\Http\Controllers\admin\testController;
 */
 
 Route::resource('test', testController::class);
-    
+Route::post('/upload',[testController::class,'uploadImage']);    
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   
     
