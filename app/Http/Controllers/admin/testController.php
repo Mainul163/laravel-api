@@ -54,18 +54,59 @@ class testController extends Controller
     {
         //
 
+        // $validator=Validator::make($request->all(),[
+        //     'name'=>'required',
+        //                'size'=>'required',
+        //                'price'=>'required'
+
+        // ]);
+
+        // if($validator->fails()){
+
+        //     return response([
+        //         'message'=>$validator->errors()->all()
+        //     ]);
+        // }
+
+
+//       $validator=  $request->validate([
+//            'name'=>'required',
+//            'size'=>'required',
+//            'price'=>'required'
+
+//         ]);
+//    if($validator->fails()){
+
+//             return response([
+//                 'message'=>$validator->errors()->all()
+//             ]);
+//         }
         try{
+            $validator=  $request->validate([
+                'name'=>'required',
+                'size'=>'required',
+                'price'=>'required'
+     
+             ]);
 
-            $student=new Student();
-            $student->name=$request->name;
-            $student->size=$request->size;
-            $student->price=$request->price;
-            $student->save();
-
-            return response([
-               'message'=>'Student Create',
-               'student'=>$student
-            ]);
+             if($validator){
+                $student=new Student();
+                $student->name=$request->name;
+                $student->size=$request->size;
+                $student->price=$request->price;
+                $student->save();
+    
+                return response([
+                   'message'=>'Student Create',
+                   'student'=>$student
+                ]);
+             }else{
+                return response([
+                    "message"=> "The given data was invalid.",
+                ]);
+             }
+          
+         
 
         }catch(Exception $ex){
            
