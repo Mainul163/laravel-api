@@ -140,5 +140,22 @@ class testController extends Controller
     public function destroy($id)
     {
         //
+        try{
+
+            $student=Student::find($id);
+            $student->delete();
+
+            return response ([
+              
+                "message"=>'student deleted'
+
+            ]);
+
+           }catch(Throwable $th){
+            return response([
+                'message'=>$th->getMessage()
+               ]);
+           }
+
     }
 }
